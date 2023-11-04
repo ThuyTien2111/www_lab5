@@ -50,6 +50,7 @@ public class SkillDao {
             e.printStackTrace();
         }
         return false;
+
     }
     @Transactional
     public boolean active(long id){

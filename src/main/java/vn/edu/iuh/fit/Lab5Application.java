@@ -78,7 +78,7 @@ public class Lab5Application {
 
 
 
-        context.close();
+//        context.close();
 
     }
 
