@@ -4,8 +4,12 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import vn.edu.iuh.fit.entity.Job;
 import vn.edu.iuh.fit.entity.Skill;
 
 import java.util.ArrayList;
@@ -74,7 +78,7 @@ public class SkillDao {
         return null;
     }
     @Transactional
-    public List<Skill> getAll(){
+    public List<Skill> getAllSkillList(){
         try {
             return manager.createQuery("select s from Skill s", Skill.class).getResultList();
         }catch (Exception e){
@@ -82,6 +86,24 @@ public class SkillDao {
         }
         return null;
     }
+    @Transactional
+    public Page<Skill> getAll(int page, int size) {
+        try {
+            //số job hiển thị
+            List<Skill> skills = manager.createQuery("select s from Skill s", Skill.class)
+                    .setFirstResult(page * size)
+                    .setMaxResults(size)
+                    .getResultList();
+            //tổng số job
+            long totalSkills = (long) manager.createQuery("select count(s) from Skill s").getSingleResult();
+
+            return new PageImpl<>(skills, PageRequest.of(page, size), totalSkills);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Transactional
     public List<Skill> getSkillsForJob(long jobID){
         List<Skill> list= new ArrayList<>();

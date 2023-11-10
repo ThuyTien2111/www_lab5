@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import vn.edu.iuh.fit.dao.CandidateSkillDao;
 import vn.edu.iuh.fit.dao.JobSkillDao;
+import vn.edu.iuh.fit.entity.Candidate;
 import vn.edu.iuh.fit.entity.Job;
 import vn.edu.iuh.fit.entity.Skill;
 
@@ -46,5 +47,12 @@ public class CandidateSkillControll {
         model.addAttribute("skills", skills);
         model.addAttribute("candID", candID);
         return "skill-to-learn";
+    }
+    @GetMapping("/cand-by-skill/{skillID}")
+    public String showCandBySkill(@PathVariable Long skillID, Model model) {
+        List<Candidate> candidates=candidateSkillDao.getCandidateOrderBySkill(skillID);
+        model.addAttribute("candidates", candidates);
+        model.addAttribute("skillID", skillID);
+        return "cand-by-skill";
     }
 }
