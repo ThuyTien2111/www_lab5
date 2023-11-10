@@ -44,7 +44,7 @@ spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.Ph
 
 ## Đóng góp
 
-Nếu bạn muốn đóng góp vào dự án Lab 4 Spring Boot, bạn có thể thực hiện các bước sau:
+Nếu bạn muốn đóng góp vào dự án Lab 5 Spring Boot, bạn có thể thực hiện các bước sau:
 
 1. Fork dự án trên [GitHub](https://github.com/ThuyTien2111/www_lab5).
 2. Tạo một nhánh mới cho các tính năng hoặc sửa đổi bạn muốn thêm vào.
